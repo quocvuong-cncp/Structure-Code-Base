@@ -17,6 +17,9 @@ internal static class TableNames
     internal const string AppUserLogins = nameof(AppUserLogins); // IdentityRoleClaim
     internal const string AppUserTokens = nameof(AppUserTokens); // IdentityUserToken
 
+    // For Outbox Pattern
+    internal const string OutboxMessages = nameof(OutboxMessages);
+
     // *********** Singular Nouns ***********
     internal const string Product = nameof(Product);
 }

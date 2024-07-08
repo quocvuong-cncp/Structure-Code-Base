@@ -1,5 +1,6 @@
 ﻿
-using Domain.Application.Abstractions.Interface.Repositories;
+using Domain.Domain.Abstractions.Interface.Repositories;
+using Domain.Domain.Abstractions.Interface.UnitofWorks;
 using Domain.Domain.Entities;
 using Domain.Domain.Exceptions;
 using Domain.Persistence;
@@ -21,7 +22,7 @@ public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey
         => _context?.Dispose();
 
     public IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>>? predicate = null,
-        params Expression<Func<TEntity, object>>[] includeProperties)
+        params Expression<Func<TEntity, object>>[] includeProperties )
     {
         IQueryable<TEntity> items = _context.Set<TEntity>().AsNoTracking(); // Importance Always include AsNoTracking for Query Side
         if (includeProperties != null)

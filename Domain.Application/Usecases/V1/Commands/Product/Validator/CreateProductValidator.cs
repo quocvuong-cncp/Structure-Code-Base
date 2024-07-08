@@ -19,7 +19,7 @@ public class CreateProductValidator1 : AbstractValidator<CreateProductCommand>
 {
     public CreateProductValidator1()
     {
-        RuleFor(x => x.Id).GreaterThan(0).WithMessage("Id must be greater than zero.");
+        //RuleFor(x => x.Id).GreaterThan(0).WithMessage("Id must be greater than zero.");
     }
 }
 public class GetProductQueryValidator : AbstractValidator<GetProductQuery>

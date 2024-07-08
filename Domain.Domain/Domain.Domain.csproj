@@ -6,13 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Abstractions\Entities\" />
     <Folder Include="Abstractions\Repositories\" />
     <Folder Include="Enumerations\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.Contract\Domain.Contract.csproj" />
   </ItemGroup>
 
 </Project>

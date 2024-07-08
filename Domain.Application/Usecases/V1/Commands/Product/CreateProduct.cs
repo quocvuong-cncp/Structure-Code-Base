@@ -9,14 +9,14 @@ using Domain.Contract.Abstractions.Message;
 using MediatR;
 
 namespace Domain.Application.Usecases.V1.Commands.Product;
-public sealed class CreateProductCommand:ICommand<ProductModel<int>>
+public sealed class CreateProductCommand:ICommand<ProductModel<Guid>>
 {
-    public CreateProductCommand(int id, string name)
+    public CreateProductCommand(Guid id, string name)
     {
         Id = id;
         ProductName = name; 
     }
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string ProductName { get; set; }
-    public static CreateProductCommand Create(int id, string productName) => new(id, productName);
+    public static CreateProductCommand Create(Guid id, string productName) => new(id, productName);
 }

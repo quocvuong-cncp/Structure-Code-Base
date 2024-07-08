@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Domain.Domain.Entities;
 
-namespace Domain.Application.Abstractions.Interface.Repositories;
+namespace Domain.Domain.Abstractions.Interface.Repositories;
 
 public interface IGenericRepository<TEntity, in TKey> where TEntity :  BaseEntities<TKey>
 {

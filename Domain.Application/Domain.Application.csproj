@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Folder Include="DependencyInjection\Options\" />
+    <Folder Include="Usecases\V1\Commands\Identity\Validator\" />
     <Folder Include="Usecases\V2\Commands\" />
     <Folder Include="Usecases\V2\Queries\" />
   </ItemGroup>

@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Domain.Application.Usecases.V1.Events.DomainEvents.Product;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Domain.API.Controllers;
 [Route("api/[controller]")]
@@ -23,10 +24,11 @@ public class TestMediaR : ControllerBase
         _publisher = publisher;
     }
     [HttpGet]
+
     public async Task<IActionResult> GetProduct()
     {
         var result = await _mediator.Send(new GetProductQuery());
-        await _publisher.Publish(new CreatedProductDomainEvent(new Guid(), "kkk")); 
+   
         if (result.IsFailure)
             return HandlerFailure(result);
         return Ok(result);
@@ -34,7 +36,7 @@ public class TestMediaR : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateProduct()
     {
-        var result = await _mediator.Send(CreateProductCommand.Create(5, "Cola"));
+        var result = await _mediator.Send(CreateProductCommand.Create(Guid.NewGuid(), "Cola"));
         if (result.IsFailure)
             return HandlerFailure(result);
         return Ok(result.Value);

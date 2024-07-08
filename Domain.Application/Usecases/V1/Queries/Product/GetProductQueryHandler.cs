@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Application.Abstractions.Interface.UnitofWorks;
+using Domain.Domain.Abstractions.Interface.UnitofWorks;
 using Domain.Contract.Abstractions.Message;
 using Domain.Contract.Abstractions.Shared;
 using Microsoft.EntityFrameworkCore;

@@ -8,5 +8,5 @@ using MediatR;
 namespace Domain.Contract.Abstractions.Message;
 public interface IDomainEvent:INotification
 {
-    public Guid Id { get; set; }
+
 }

@@ -4,9 +4,5 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Contract.Services.Product;
-public static class Query
-{
-
-
-}
+namespace Domain.Contract.Services.Identity;
+public record Login(string email, string password);

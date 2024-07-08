@@ -12,7 +12,7 @@ public class ServiceProfile:Profile
 {
     public ServiceProfile()
     {
-        CreateMap<Product, ProductModel<int>>().ReverseMap();
+        CreateMap<Product, ProductModel<Guid>>().ReverseMap();
     }
 
 }

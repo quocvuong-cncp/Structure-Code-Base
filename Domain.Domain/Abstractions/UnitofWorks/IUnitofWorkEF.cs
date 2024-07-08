@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Application.Abstractions.Interface.Repositories;
+using Domain.Domain.Abstractions.Interface.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Domain.Application.Abstractions.Interface.UnitofWorks;
+namespace Domain.Domain.Abstractions.Interface.UnitofWorks;
 public interface IUnitofWorkEF: IDisposable
 {
     

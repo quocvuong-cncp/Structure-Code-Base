@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Castle.Core.Configuration;
 using DemoCICD.Persistence.DependencyInjection.Options;
-using Domain.Application.Abstractions.Interface.Repositories;
-using Domain.Application.Abstractions.Interface.UnitofWorks;
+using Domain.Domain.Abstractions.Interface.Repositories;
+using Domain.Domain.Abstractions.Interface.UnitofWorks;
 using Domain.Domain.Entities.Identity;
+using Domain.Persistence.Interceptors;
 using Domain.Persistence.Repositories;
 using Domain.Persistence.Repositories.UnitofWork;
 using Microsoft.AspNetCore.Identity;
@@ -21,11 +22,18 @@ public static class AddServices
 {
     public static IServiceCollection AddServicesPersistence(this IServiceCollection services)
     {
+        services.AddTransient<IUnitofWorkEF, UnitofWorkEF>();
+        services.AddTransient<IProductRepository, ProductRepository>();
+        services.AddSingleton<ConvertDomainEventsToOutboxMessagesInterceptor>();
+        services.AddSingleton<UpdateAuditableEntitiesInterceptor>();
+        ///
         var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
         var connectionStrings = configuration.GetConnectionString("CICD");
         var options = new SqlServerRetryOptions();
+        var provider = services.BuildServiceProvider();
         configuration.GetSection(nameof(SqlServerRetryOptions)).Bind(options);
-        services.AddDbContextPool<DbContext, ApplicationDBContext>((provider, builder) => {
+        services.AddDbContextPool<DbContext, ApplicationDBContext>((provider, builder) =>
+        {
             builder.UseSqlServer(
                 connectionStrings,
                 optionBuilder => optionBuilder.ExecutionStrategy(dependencies => new SqlServerRetryingExecutionStrategy(
@@ -34,7 +42,9 @@ public static class AddServices
                     maxRetryDelay: options.MaxRetryDelay,
                     errorNumbersToAdd: options.ErrorNumbersToAdd))
                 .MigrationsAssembly(typeof(ApplicationDBContext).Assembly.GetName().Name)
-                );
+                ).AddInterceptors(  
+                provider.GetRequiredService<ConvertDomainEventsToOutboxMessagesInterceptor>(),
+                provider.GetRequiredService<UpdateAuditableEntitiesInterceptor>())
             ;
         });
         services.AddIdentityCore<AppUser>()
@@ -53,8 +63,7 @@ public static class AddServices
             options.Password.RequiredLength = 6;
             options.Password.RequiredUniqueChars = 1;
         });
-        services.AddTransient<IUnitofWorkEF, UnitofWorkEF>();
-        services.AddTransient<IProductRepository, ProductRepository>();
+
         return services;
     }
 
