@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Domain.Abstractions.Entities;
-public interface IAuditableEntity<T>
+public abstract class AuditableEntity<T>: Entity<T>
 {
-    DateTimeOffset? CreatedOnUtc { get; set; }
+    public DateTimeOffset? CreatedOnUtc { get; set; }
 
-    DateTimeOffset? ModifiedOnUtc { get; set; }
-    T? CreateBy { get; set; }
-    T? UpdateBy { get; set; }
+    public DateTimeOffset? ModifiedOnUtc { get; set; }
+    public T? CreateBy { get; set; }
+    public T? UpdateBy { get; set; }
 }

@@ -11,14 +11,9 @@ using Domain.Domain.Abstractions.Entities;
 
 namespace Domain.Domain.Entities;
 
-public class BaseEntities<T>: AggregateRoot,IAuditableEntity<T>
+public class BaseEntities<T>: AggregateRoot<T>
 {
-    [Key]
-    [Column("Id")]
-    public T Id { get; set; }
-    public DateTimeOffset? CreatedOnUtc { get; set; }
-    public DateTimeOffset? ModifiedOnUtc { get; set; }
-    public T? CreateBy { get; set; }
-    public T? UpdateBy { get; set; }
+
+
 }
 

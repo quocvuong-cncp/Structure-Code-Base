@@ -27,12 +27,12 @@ public sealed class UpdateAuditableEntitiesInterceptor
                 cancellationToken);
         }
 
-        IEnumerable<EntityEntry<IAuditableEntity<Guid>>> entries =
+        IEnumerable<EntityEntry<AuditableEntity<Guid>>> entries =
             dbContext
                 .ChangeTracker
-                .Entries<IAuditableEntity<Guid>>();
+                .Entries<AuditableEntity<Guid>>();
 
-        foreach (EntityEntry<IAuditableEntity<Guid>> entityEntry in entries)
+        foreach (EntityEntry<AuditableEntity<Guid>> entityEntry in entries)
         {
             if (entityEntry.State == EntityState.Added)
             {

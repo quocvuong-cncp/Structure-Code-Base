@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Domain.Persistence.Migrations
-{
-    public partial class V2 : Migration
+namespace Domain.Persistence.Migrations;
+
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,6 +71,19 @@ namespace Domain.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AppUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Event",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EventId = table.Column<Guid>(type: "uniqueidentifier", maxLength: 200, nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Event", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -323,6 +336,9 @@ namespace Domain.Persistence.Migrations
                 name: "AppUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Event");
+
+            migrationBuilder.DropTable(
                 name: "OutboxMessages");
 
             migrationBuilder.DropTable(
@@ -344,4 +360,4 @@ namespace Domain.Persistence.Migrations
                 name: "Functions");
         }
     }
-}
+

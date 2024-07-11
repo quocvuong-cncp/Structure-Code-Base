@@ -1,9 +1,10 @@
 ﻿using System.Linq.Expressions;
+using Domain.Domain.Abstractions.Entities;
 using Domain.Domain.Entities;
 
 namespace Domain.Domain.Abstractions.Interface.Repositories;
 
-public interface IGenericRepository<TEntity, in TKey> where TEntity :  BaseEntities<TKey>
+public interface IGenericRepository<TEntity, in TKey> where TEntity :  IEntity<TKey>
 {
     Task<TEntity> FindByIdAsync(TKey id, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includeProperties);
 

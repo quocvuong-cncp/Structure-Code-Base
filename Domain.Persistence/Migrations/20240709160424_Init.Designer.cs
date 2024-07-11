@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240708143203_V2")]
-    partial class V2
+    [Migration("20240709160424_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,8 +28,7 @@ namespace Domain.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CreateBy")
                         .HasColumnType("uniqueidentifier");
@@ -51,6 +50,25 @@ namespace Domain.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Product", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Domain.Entities.Idempotence.EventProject", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EventId")
+                        .HasMaxLength(200)
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Event", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Domain.Entities.Identity.Action", b =>

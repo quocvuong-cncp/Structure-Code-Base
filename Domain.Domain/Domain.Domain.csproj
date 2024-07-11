@@ -6,7 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Abstractions\Repositories\" />
     <Folder Include="Enumerations\" />
   </ItemGroup>
   <ItemGroup>

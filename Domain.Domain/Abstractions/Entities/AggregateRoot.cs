@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Domain.Contract.Abstractions.Message;
 
 namespace Domain.Domain.Abstractions.Entities;
-public abstract class AggregateRoot
+public abstract class AggregateRoot<T>: AuditableEntity<T>
 {
     private readonly List<IDomainEvent> _domainEvents = new();
 

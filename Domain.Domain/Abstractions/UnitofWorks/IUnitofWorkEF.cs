@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Domain.Abstractions.Interface.Repositories;
+using Domain.Domain.Abstractions.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Domain.Domain.Abstractions.Interface.UnitofWorks;
 public interface IUnitofWorkEF: IDisposable
 {
     
-    public IProductRepository ProductRepository { get; }
+     IProductRepository ProductRepository { get; }
+     IEventProjectRepository EventProjectRepository { get; }
     //Start the database Transaction
-    public IExecutionStrategy CreateStrategy();
+     IExecutionStrategy CreateStrategy();
     Task CreateTransaction();
     //Commit the database Transaction
     Task CommitAsync();

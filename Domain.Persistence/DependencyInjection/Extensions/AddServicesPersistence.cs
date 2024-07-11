@@ -7,6 +7,7 @@ using Castle.Core.Configuration;
 using DemoCICD.Persistence.DependencyInjection.Options;
 using Domain.Domain.Abstractions.Interface.Repositories;
 using Domain.Domain.Abstractions.Interface.UnitofWorks;
+using Domain.Domain.Abstractions.Repositories;
 using Domain.Domain.Entities.Identity;
 using Domain.Persistence.Interceptors;
 using Domain.Persistence.Repositories;
@@ -24,6 +25,7 @@ public static class AddServices
     {
         services.AddTransient<IUnitofWorkEF, UnitofWorkEF>();
         services.AddTransient<IProductRepository, ProductRepository>();
+        services.AddTransient<IEventProjectRepository, EventRepositorry>();
         services.AddSingleton<ConvertDomainEventsToOutboxMessagesInterceptor>();
         services.AddSingleton<UpdateAuditableEntitiesInterceptor>();
         ///

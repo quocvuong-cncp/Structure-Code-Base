@@ -1,4 +1,5 @@
 ﻿
+using Domain.Domain.Abstractions.Entities;
 using Domain.Domain.Abstractions.Interface.Repositories;
 using Domain.Domain.Abstractions.Interface.UnitofWorks;
 using Domain.Domain.Entities;
@@ -6,12 +7,13 @@ using Domain.Domain.Exceptions;
 using Domain.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Security.Principal;
 using System.Threading;
 
 namespace Domain.Persistence.Repositories.Base;
 
-public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey>, IDisposable
-        where TEntity : BaseEntities<TKey>
+public class GenericRepository<TEntity,  TKey> : IGenericRepository<TEntity,  TKey>, IDisposable
+        where TEntity : Entity<TKey>
 {
         private readonly ApplicationDBContext _context;
 
