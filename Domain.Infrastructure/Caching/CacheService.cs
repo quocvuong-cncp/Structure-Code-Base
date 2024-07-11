@@ -22,9 +22,17 @@ public class CacheService : ICacheService
     private readonly IDistributedCache _distributedCache;
     private readonly DistributedCacheEntryOptions cacheEntryOptions;
 
-    public CacheService(IDistributedCache distributedCache)
+    //public CacheService(IDistributedCache distributedCache)
+    //{
+    //    _distributedCache = distributedCache;
+    //    cacheEntryOptions = new DistributedCacheEntryOptions()
+    //    {
+    //        SlidingExpiration = TimeSpan.FromSeconds(100)
+    //    };
+    //}
+    public CacheService()
     {
-        _distributedCache = distributedCache;
+        //_distributedCache = distributedCache;
         cacheEntryOptions = new DistributedCacheEntryOptions()
         {
             SlidingExpiration = TimeSpan.FromSeconds(100)

@@ -29,9 +29,9 @@ public static class ServiceCollecttionExtensions
         services.Configure<JwtOption>(configuration.GetSection("JWTOption"));
         services.AddTransient<IJwtTokenService, JwtTokenService>();
         services.AddTransient<ICacheService, CacheService>();
-        InitializeCache(services, configuration);
+        //InitializeCache(services, configuration);
         AddQuartzInfrastructure(services);
-        ConfigurationMasstransitRabbitMQ(services, configuration);
+        //ConfigurationMasstransitRabbitMQ(services, configuration);
         
         return services;
     }
