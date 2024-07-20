@@ -11,7 +11,7 @@ using Domain.Domain.Abstractions.Entities;
 
 namespace Domain.Domain.Entities;
 
-public class BaseEntities<T>: AggregateRoot<T>
+public class BaseEntities<T>: AggregateRootAuditableEntity<T>
 {
 
 

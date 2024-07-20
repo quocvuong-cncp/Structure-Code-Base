@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Domain.Abstractions.Entities;
-public class Entity<T>: IEntity<T>
+public abstract class Entity<T>: IEntity<T>
 {
     public T Id { set; get; }
 }

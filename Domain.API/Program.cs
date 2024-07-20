@@ -24,20 +24,23 @@ builder.Services.AddServicesApplicationCollecttion();
 builder.Services.AddServicesPersistence();
 builder.Services.AddExtensionsInfrastructure(builder.Configuration);
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
-
+//builder.Services.AddScoped<MiddleWareTest>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsProduction()||app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<MiddleWareTest>();
 
 app.MapControllers();
 

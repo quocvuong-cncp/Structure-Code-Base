@@ -1,14 +1,12 @@
-﻿{
+{
   "profiles": {
-    "http": {
+    "Domain.Contract": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:4000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:57618;http://localhost:57622"
     }
   }
 }
